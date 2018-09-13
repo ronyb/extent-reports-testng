@@ -1,5 +1,6 @@
 package il.co.ronyb.infra.reports.extent;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,6 +20,12 @@ public class ExtentReporter {
 	private ExtentReporter() {
 		
 		extentReports = new ExtentReports();
+		
+		File extentReportsFolder = new File("extent-reports");
+		if (!extentReportsFolder.exists()) {
+			extentReportsFolder.mkdirs();
+		}
+		
 		extentReports.attachReporter(new ExtentHtmlReporter("extent-reports/report_" + dateFormat.format(new Date()) + ".html"));
 	}
 	
